@@ -1,2 +1,31 @@
 # summernote-ext-highlight
 Based on code-prettify the summernote code highlighting plugin
+
+## Setup
+ *Include summernote project script
+ *Include the script tag below in your document
+```HTML
+<script src="http://your domain/summernote-ext-highlight.js"></script>
+```
+
+## Usage
+ *Configuration summernote toolbar
+```javascript
+$('.summernote').summernote({
+    height: 200,
+    tabsize: 2,
+    // close prettify Html
+    prettifyHtml:false,
+    toolbar:[
+        // Add highlight plugin
+        ['highlight', ['highlight']],
+		],
+		lang:'zh-CN'
+  });
+```
+## Contacts
+* Email: yanlong_he@163.com
+* Twitter: https://twitter.com/YanlongHe
+
+## License
+summernote-ext-highlight may be freely distributed under the MIT license.

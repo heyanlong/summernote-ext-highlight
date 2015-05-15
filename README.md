@@ -1,5 +1,5 @@
 # summernote-ext-highlight
-Based on code-prettify the summernote code highlighting plugin
+Based on [Google code-prettify](https://github.com/google/code-prettify) the summernote code highlighting plugin
 
 ## Setup
  * Include summernote project script

@@ -2,14 +2,14 @@
 Based on code-prettify the summernote code highlighting plugin
 
 ## Setup
- *Include summernote project script
- *Include the script tag below in your document
+ * Include summernote project script
+ * Include the script tag below in your document
 ```HTML
 <script src="http://your domain/summernote-ext-highlight.js"></script>
 ```
 
 ## Usage
- *Configuration summernote toolbar
+ * Configuration summernote toolbar
 ```javascript
 $('.summernote').summernote({
     height: 200,

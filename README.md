@@ -19,9 +19,9 @@ $('.summernote').summernote({
     toolbar:[
         // Add highlight plugin
         ['highlight', ['highlight']],
-		],
-		lang:'zh-CN'
-  });
+    ],
+    lang:'zh-CN'
+});
 ```
 ## Contacts
 * Email: yanlong_he@163.com

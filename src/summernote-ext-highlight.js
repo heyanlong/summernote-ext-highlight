@@ -1,3 +1,9 @@
+/*!
+ * summernote highlight plugin
+ * http://www.heyanlong.com/
+ *
+ * Released under the MIT license
+ */
 (function (factory) {
     /* global define */
     if (typeof define === 'function' && define.amd) {
@@ -27,9 +33,11 @@
         var $code = $('<code>');
         $code.html(code);
         $code.addClass('language-' + select);
+
         var $pre = $('<pre>');
         $pre.html($code)
-        $pre.addClass('prettyprint');
+        $pre.addClass('prettyprint').addClass('linenums');
+
         return $pre[0];
     };
 
@@ -109,7 +117,7 @@
          */
         dialogs: {
             highlight: function (lang) {
-                var body = '<div class="form-group row-fluid">' +
+                var body = '<div class="form-group">' +
                     '<select class="form-control note-highlight-select">' +
                     '<option value="bsh">bsh</option>' +
                     '<option value="c">c</option>' +
@@ -136,6 +144,8 @@
                     '<option value="xml">xml</option>' +
                     '<option value="xsl">xsl</option>' +
                     '</select>' +
+                    '</div>' +
+                    '<div class="form-group">' +
                     '<label>' + lang.highlight.codeLabel + '</label>' +
                     '<textarea class="note-highlight-code form-control" rows="10"></textarea>' +
                     '</div>';

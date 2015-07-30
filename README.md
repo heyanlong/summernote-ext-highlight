@@ -26,7 +26,7 @@ $('.summernote').summernote({
 ## Contacts
 * Email: yanlong_he@163.com
 * Twitter: https://twitter.com/YanlongHe
-* Website: http://www.heyanlong.com/
+* Website: http://www.hyl.pw/
 
 ## License
 summernote-ext-highlight may be freely distributed under the MIT license.

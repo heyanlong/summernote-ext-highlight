@@ -100,11 +100,12 @@
                 return $.Deferred(function (deferred) {
                     var $extHighlightCode = self.$dialog.find('.ext-highlight-code');
                     var $extHighlightBtn = self.$dialog.find('.ext-highlight-btn');
+                    var $extHighlightSelect = self.$dialog.find('.ext-highlight-select');
 
                     ui.onDialogShown(self.$dialog, function () {
                         context.triggerEvent('dialog.shown');
 
-                        $extHighlightCode.text(codeInfo);
+                        $extHighlightCode.val(codeInfo);
 
                         $extHighlightCode.on('input', function () {
                             ui.toggleBtn($extHighlightBtn, $extHighlightCode.val() != '');
@@ -112,10 +113,9 @@
                             codeInfo = $extHighlightCode.val();
                         });
 
-                        $extHighlightBtn.on('click', function (event) {
+                        $extHighlightBtn.one('click', function (event) {
                             event.preventDefault();
-                            console.log(self.createCodeNode(codeInfo, 'php'));
-                            context.invoke('editor.insertNode', self.createCodeNode(codeInfo, 'php'));
+                            context.invoke('editor.insertNode', self.createCodeNode(codeInfo, $extHighlightSelect.val()));
 
                             self.$dialog.modal('hide');
                         });

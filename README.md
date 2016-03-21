@@ -3,6 +3,7 @@ Based on [Google code-prettify](https://github.com/google/code-prettify) the [su
 
 ## Setup
  * Include summernote project script
+ * Include [Font Awesome](http://fontawesome.io/)
  * Include the script tag below in your document
 ```HTML
 <script src="http://your domain/summernote-ext-highlight.js"></script>

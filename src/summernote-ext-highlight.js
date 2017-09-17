@@ -85,7 +85,7 @@
 
             this.createCodeNode = function (code, select) {
                 var $code = $('<code>');
-                $code.html(code);
+                $code.html($code);
                 $code.addClass('language-' + select);
 
                 var $pre = $('<pre>');

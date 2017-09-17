@@ -34,7 +34,6 @@
             var options = context.options;
             var lang = options.langInfo;
 
-
             // add button
 
             context.memo('button.highlight', function () {
@@ -115,16 +114,12 @@
 
                         $extHighlightBtn.one('click', function (event) {
                             event.preventDefault();
-                            context.invoke('editor.insertNode', self.createCodeNode(codeInfo, $extHighlightSelect.val()));
+                            deferred.resolve(self.createCodeNode(codeInfo, $extHighlightSelect.val()));
 
                             self.$dialog.modal('hide');
                         });
                     });
-
-                    ui.onDialogHidden(self.$dialog, function () {
-                        context.triggerEvent('dialog.shown');
-                        deferred.resolve();
-                    });
+                    
                     ui.showDialog(self.$dialog);
                 }).promise();
             };
@@ -140,6 +135,7 @@
                 context.invoke('editor.saveRange');
                 this.showHighlightDialog(codeInfo).then(function (codeInfo) {
                     context.invoke('editor.restoreRange');
+                    context.invoke('editor.insertNode', codeInfo);
                 });
             };
 

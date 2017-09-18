@@ -33,7 +33,7 @@
             var $editor = context.layoutInfo.editor;
             var options = context.options;
             var lang = options.langInfo;
-
+            
             // add button
 
             context.memo('button.highlight', function () {
@@ -85,11 +85,11 @@
 
             this.createCodeNode = function (code, select) {
                 var $code = $('<code>');
-                $code.html(code);
+                $code.html($code);
                 $code.addClass('language-' + select);
 
                 var $pre = $('<pre>');
-                $pre.html($code)
+                $pre.html(code)
                 $pre.addClass('prettyprint').addClass('linenums');
 
                 return $pre[0];
@@ -102,26 +102,29 @@
                     var $extHighlightSelect = self.$dialog.find('.ext-highlight-select');
 
                     ui.onDialogShown(self.$dialog, function () {
-                        context.triggerEvent('dialog.shown');
 
                         $extHighlightCode.val(codeInfo);
 
                         $extHighlightCode.on('input', function () {
                             ui.toggleBtn($extHighlightBtn, $extHighlightCode.val() != '');
-
                             codeInfo = $extHighlightCode.val();
                         });
 
                         $extHighlightBtn.one('click', function (event) {
                             event.preventDefault();
-                            deferred.resolve(self.createCodeNode(codeInfo, $extHighlightSelect.val()));
-
-                            self.$dialog.modal('hide');
+                            deferred.resolve(self.createCodeNode($extHighlightCode.val(), $extHighlightSelect.val()));
                         });
                     });
-                    
+
+                    ui.onDialogHidden(self.$dialog, function () {
+                        $extHighlightBtn.off('click');
+                        if (deferred.state() === 'pending') {
+                            deferred.reject();
+                        }
+                    });
+
                     ui.showDialog(self.$dialog);
-                }).promise();
+                });
             };
 
             this.getCodeInfo = function () {
@@ -131,11 +134,14 @@
 
             this.show = function () {
                 var codeInfo = self.getCodeInfo();
-
                 context.invoke('editor.saveRange');
                 this.showHighlightDialog(codeInfo).then(function (codeInfo) {
+                    self.$dialog.modal('hide');
                     context.invoke('editor.restoreRange');
-                    context.invoke('editor.insertNode', codeInfo);
+
+                    if (codeInfo) {
+                        context.invoke('editor.insertNode', codeInfo);
+                    }
                 });
             };
 

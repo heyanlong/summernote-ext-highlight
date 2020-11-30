@@ -112,7 +112,11 @@
 
                         $extHighlightBtn.one('click', function (event) {
                             event.preventDefault();
-                            deferred.resolve(self.createCodeNode($extHighlightCode.val(), $extHighlightSelect.val()));
+                            //转义后的html
+                            $code = $extHighlightCode.val().replace(/[<>&"]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c];});
+                            //插入的代码类型
+                            $type = $extHighlightSelect.val();
+                            deferred.resolve(self.createCodeNode($code, $type));
                         });
                     });
 
